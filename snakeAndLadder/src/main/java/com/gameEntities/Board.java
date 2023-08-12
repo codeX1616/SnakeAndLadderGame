@@ -1,7 +1,10 @@
 package com.gameEntities;
 
+import lombok.Getter;
+
 import java.util.concurrent.ThreadLocalRandom;
 
+@Getter
 public class Board {
     private Cell[][] cells;
 

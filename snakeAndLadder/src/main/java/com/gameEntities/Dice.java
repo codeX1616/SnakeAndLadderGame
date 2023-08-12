@@ -1,10 +1,11 @@
 package com.gameEntities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-@Data
+@AllArgsConstructor
 public class Dice {
 
     private int diceCount;
