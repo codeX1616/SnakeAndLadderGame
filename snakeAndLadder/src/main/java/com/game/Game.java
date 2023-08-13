@@ -50,6 +50,7 @@ public class Game {
 
     private int jumpCheck(int playerNewPosition) {
         // TODO - Add jump check
+        return -1;
     }
 
     private Player findPlayerTurn() {
