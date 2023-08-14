@@ -8,7 +8,14 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Board {
     private Cell[][] cells;
 
+    /**
+     * Snake and Ladder Board initializer constructor
+     * @param boardSize
+     * @param numberOfSnakes
+     * @param numberOfLadders
+     */
     public Board(int boardSize, int numberOfSnakes, int numberOfLadders) {
+        System.out.println("Initializing cells");
         initializeCells(boardSize);
         addSnakesAndLadders(cells, numberOfSnakes, numberOfLadders);
     }
@@ -31,6 +38,7 @@ public class Board {
      * @param numberOfLadders
      */
     private void addSnakesAndLadders(Cell[][] cells, int numberOfSnakes, int numberOfLadders) {
+        System.out.println("Adding snakes and ladders to the board");
         while (numberOfSnakes > 0) {
             int snakeHead = ThreadLocalRandom.current().nextInt(1, cells.length-1);
             int snakeTail = ThreadLocalRandom.current().nextInt(1, cells.length-1);
@@ -48,25 +56,24 @@ public class Board {
         while (numberOfLadders > 0) {
             int ladderHead = ThreadLocalRandom.current().nextInt(1, cells.length-1);
             int ladderTail = ThreadLocalRandom.current().nextInt(1, cells.length-1);
-            if (ladderTail >= ladderHead) {
+            if (ladderHead >= ladderTail) {
                 continue;
             }
-            Jump snakeObj = Jump.builder()
+            Jump ladderObj = Jump.builder()
                     .start(ladderHead)
                     .end(ladderTail)
                     .build();
             Cell cell = getCell(ladderHead);
-            cell.setJump(snakeObj);
-            numberOfSnakes--;
+            cell.setJump(ladderObj);
+            numberOfLadders--;
         }
     }
 
     /**
      * Method to get get cell object from player position
      * @param playerPosition
-     * @return
      */
-    private Cell getCell(int playerPosition) {
+    public Cell getCell(int playerPosition) {
         int boardRow = playerPosition / cells.length;
         int boardCol = playerPosition % cells.length;
         return cells[boardRow][boardCol];
