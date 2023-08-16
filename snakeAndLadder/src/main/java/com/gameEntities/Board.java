@@ -70,7 +70,7 @@ public class Board {
     }
 
     /**
-     * Method to get get cell object from player position
+     * Method to get cell object from player position
      * @param playerPosition
      */
     public Cell getCell(int playerPosition) {
